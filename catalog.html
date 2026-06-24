@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог телефонов</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        .sort-bar { margin-bottom: 20px; }
+        .sort-bar a {
+            margin-right: 10px;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+        .sort-bar a.active, .sort-bar a:hover { background: #007bff; color: #fff; border-color: #007bff; }
+        .phones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .phone-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: box-shadow 0.2s;
+        }
+        .phone-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+        .phone-card h3 { margin: 0 0 8px; font-size: 1rem; }
+        .phone-card .price { color: #007bff; font-weight: bold; font-size: 1.1rem; }
+        .phone-card .lte { font-size: 0.8rem; color: #28a745; margin-top: 4px; }
+        .phone-card .no-lte { font-size: 0.8rem; color: #999; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Каталог телефонов</h1>
+
+    <div class="sort-bar">
+        <strong>Сортировка:</strong>
+        <a href="?sort=name" class="{% if sort == 'name' %}active{% endif %}">По названию (А–Я)</a>
+        <a href="?sort=min_price" class="{% if sort == 'min_price' %}active{% endif %}">Сначала дешёвые</a>
+        <a href="?sort=max_price" class="{% if sort == 'max_price' %}active{% endif %}">Сначала дорогие</a>
+    </div>
+
+    <div class="phones-grid">
+        {% for phone in phones %}
+        <a class="phone-card" href="/catalog/{{ phone.slug }}">
+            <h3>{{ phone.name }}</h3>
+            <div class="price">{{ phone.price|floatformat:0 }} ₽</div>
+            {% if phone.lte_exists %}
+                <div class="lte">✔ LTE</div>
+            {% else %}
+                <div class="no-lte">✗ Без LTE</div>
+            {% endif %}
+        </a>
+        {% empty %}
+            <p>Телефоны не найдены. Запустите <code>python manage.py import_phones</code></p>
+        {% endfor %}
+    </div>
+</body>
+</html>

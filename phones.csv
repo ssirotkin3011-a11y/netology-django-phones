@@ -1,0 +1,11 @@
+id,name,price,image,release_date,lte_exists
+1,iPhone X,60000,iphone_x.jpeg,2017-11-03,True
+2,iPhone 8,35000,iphone_8.jpeg,2017-09-22,True
+3,Samsung Galaxy S9,40000,samsung_galaxy_s9.jpeg,2018-02-25,True
+4,Nokia 3310,2000,nokia_3310.jpeg,2017-02-26,False
+5,Meizu M5C,7000,meizu_m5c.jpeg,2017-04-26,False
+6,Xiaomi Redmi 5A,7000,xiaomi_redmi_5a.jpeg,2017-11-21,False
+7,iPhone 7,25000,iphone_7.jpeg,2016-09-16,True
+8,Huawei Honor 7A,8000,huawei_honor_7a.jpeg,2018-03-29,False
+9,Samsung Galaxy J2,8000,samsung_galaxy_j2.jpeg,2018-01-04,True
+10,Huawei P20,30000,huawei_p20.jpeg,2018-03-27,True
